@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>FishTantra | Intelligent Fish Identification</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1100px;
+            padding: 40px 20px;
+        }
+
+        /* Header */
+        .header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .header img {
+            width: 90px;
+            margin-bottom: 15px;
+        }
+
+        .header h1 {
+            font-size: 48px;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        .header p {
+            font-size: 16px;
+            opacity: 0.85;
+            margin-top: 8px;
+        }
+
+        /* Main Card */
+        .card {
+            background: rgba(255, 255, 255, 0.12);
+            backdrop-filter: blur(18px);
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.35);
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+        }
+
+        /* Left */
+        .left h2 {
+            font-size: 26px;
+            margin-bottom: 15px;
+        }
+
+        .left p {
+            font-size: 15px;
+            line-height: 1.7;
+            opacity: 0.9;
+        }
+
+        .features {
+            margin-top: 25px;
+        }
+
+        .features li {
+            list-style: none;
+            margin-bottom: 10px;
+            font-size: 14px;
+        }
+
+        .features li::before {
+            content: "✔";
+            margin-right: 8px;
+            color: #4dd0e1;
+        }
+
+        /* Right */
+        .upload-box {
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 16px;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .upload-box h3 {
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        input[type="file"] {
+            width: 100%;
+            padding: 12px;
+            border-radius: 8px;
+            border: none;
+            outline: none;
+            background: #fff;
+            color: #000;
+            margin-bottom: 20px;
+        }
+
+        button {
+            width: 100%;
+            padding: 14px;
+            border: none;
+            border-radius: 10px;
+            background: linear-gradient(135deg, #4dd0e1, #26c6da);
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            color: #00363a;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            margin-top: 30px;
+            font-size: 13px;
+            opacity: 0.7;
+        }
+
+        @media (max-width: 900px) {
+            .card {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="header">
+        <img src="{{ url_for('static', filename='logo.png') }}" alt="FishTantra Logo">
+        <h1>FishTantra</h1>
+        <p>AI-powered Fish Species Identification & Knowledge Platform</p>
+    </div>
+
+    <div class="card">
+
+        <div class="left">
+            <h2>About FishTantra</h2>
+            <p>
+                FishTantra is an intelligent fisheries-focused platform designed to identify fish species from images
+                using deep learning. It aims to assist students, researchers, aquaculturists, and fisheries professionals
+                with fast and reliable species recognition.
+            </p>
+
+            <ul class="features">
+                <li>Deep learning–based image classification</li>
+                <li>Support for freshwater & marine species</li>
+                <li>Taxonomy & aquaculture integration (upcoming)</li>
+                <li>Research & education oriented</li>
+            </ul>
+        </div>
+
+        <div class="upload-box">
+            <h3>Upload Fish Image</h3>
+
+            <form action="/predict" method="POST" enctype="multipart/form-data">
+                <input type="file" name="file" accept="image/*" required>
+                <button type="submit">Identify Fish Species</button>
+            </form>
+        </div>
+
+    </div>
+
+    <div class="footer">
+        © 2025 FishTantra | Built for Fisheries Science & Research
+    </div>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>FishTantra Result</title>
+
+<style>
+body {
+    font-family: "Segoe UI", Arial, sans-serif;
+    background: #f4f7fb;
+    margin: 0;
+    padding: 40px;
+}
+
+.container {
+    max-width: 1000px;
+    margin: auto;
+}
+
+.card {
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+    padding: 30px;
+    margin-bottom: 30px;
+}
+
+h1 {
+    color: #0b4f6c;
+    margin-bottom: 10px;
+}
+
+h2 {
+    color: #0b4f6c;
+    border-bottom: 2px solid #e6eef4;
+    padding-bottom: 6px;
+    margin-top: 30px;
+}
+
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+}
+
+.table th {
+    width: 35%;
+    background: #f1f6fb;
+    text-align: left;
+    padding: 10px;
+    font-weight: 600;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.table td {
+    padding: 10px;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.back-btn {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 12px 20px;
+    background: #0b4f6c;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 8px;
+}
+
+.back-btn:hover {
+    background: #08384d;
+}
+
+.error {
+    color: red;
+    font-size: 18px;
+}
+</style>
+</head>
+
+<body>
+<div class="container">
+
+{% if error %}
+    <div class="card">
+        <p class="error">{{ error }}</p>
+        <a class="back-btn" href="/">Upload Another Image</a>
+    </div>
+{% else %}
+
+    <div class="card">
+        <h1>Identified Fish: {{ fish_name }}</h1>
+
+        <h2>Taxonomy</h2>
+        <table class="table">
+            {% for k, v in fish_info.taxonomy.items() %}
+            <tr>
+                <th>{{ k }}</th>
+                <td>{{ v }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+
+        <h2>Aquaculture Practices</h2>
+        <table class="table">
+            {% for k, v in fish_info.aquaculture.items() %}
+            <tr>
+                <th>{{ k }}</th>
+                <td>{{ v }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+
+        {% if fish_info.breeding_hatchery %}
+        <h2>Breeding & Hatchery Practices</h2>
+        <table class="table">
+            {% for k, v in fish_info.breeding_hatchery.items() %}
+            <tr>
+                <th>{{ k }}</th>
+                <td>{{ v }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+        {% endif %}
+
+        <a class="back-btn" href="/">← Upload Another Image</a>
+    </div>
+
+{% endif %}
+
+</div>
+</body>
+</html>

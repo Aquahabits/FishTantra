@@ -1,5 +1,5 @@
-# minimal render build
 flask==3.0.0
 gunicorn==21.2.0
 pillow==10.2.0
 numpy==1.26.4
+reportlab==4.0.9
